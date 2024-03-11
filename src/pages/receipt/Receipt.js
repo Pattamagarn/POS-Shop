@@ -8,7 +8,6 @@ const Receipt = () => {
     const navigate = useNavigate()
     const isbooth = useSelector((state) => state.isbooth.isbooth)
     const product = useSelector((state) => state.product.product)
-    const dispatch = useDispatch()
     const menu = Object.entries(product.data)
     const totalPay = product.pay
 

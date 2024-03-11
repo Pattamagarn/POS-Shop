@@ -9,13 +9,10 @@ import { useDispatch, useSelector } from "react-redux"
 const PayCard = () => {
 
     const navigate = useNavigate()
+    const isbooth = useSelector((state) => state.isbooth.isbooth)
     const product = useSelector((state) => state.product.product)
-    const dispatch = useDispatch()
-
-    const [time, setTime] = useState(true)
     const [user, setUser] = useState([])
-
-
+    const menu = Object.entries(product.data)
     const totalPay = product.pay
     const point = totalPay / 5
 
@@ -102,6 +99,18 @@ const PayCard = () => {
                                     else {
                                         setUser(response.data)
                                         alertSuccess('ชำระเสร็จสิ้น', '', 'ตกลง')
+                                        axios.post(`${process.env.REACT_APP_API}createTransactionShop`, {
+                                            studentID: response.data.studentID,
+                                            point: point,
+                                            shopID: isbooth.item
+                                            
+                                        })
+                                        axios.post(`${process.env.REACT_APP_API}createTransactionPayment`, {
+                                            product : menu,
+                                            cash : totalPay,
+                                            point : point,
+                                            shopID : isbooth.item
+                                        })
                                     }
                                 }
                             })

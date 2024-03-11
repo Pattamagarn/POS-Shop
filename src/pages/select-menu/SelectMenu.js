@@ -1,6 +1,6 @@
 import MetaHeader from '../../components/MetaHeader/MetaHeader';
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { addProduct } from '../../redux/transaction/transactionSlice';
 import { setIsBooth } from '../../redux/transaction/boothSlice';
@@ -10,7 +10,6 @@ const SelectMenu = () => {
 
     const navigate = useNavigate()
     const isbooth = useSelector((state) => state.isbooth.isbooth)
-    const product = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
 
 
